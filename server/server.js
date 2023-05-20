@@ -11,11 +11,13 @@ app.use(cors());
 app.get("/", (request, response) => {
 	response.json("Welcome to the root!");
 });
+
+//see readme for api info
 app.get("/kanjis", async (request, response) => {
 	const options = {
 		method: "GET",
-		url: "https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/",
-		params: { grade: "2" },
+		url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/all",
+		params: {},
 		headers: {
 			"X-RapidAPI-Key": process.env.RAPID_API_KEY,
 			"X-RapidAPI-Host": "kanjialive-api.p.rapidapi.com",
