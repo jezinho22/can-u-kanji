@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const APIGetByGrade = require("./library/APIGetByGrade");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
@@ -13,10 +14,12 @@ app.get("/", (request, response) => {
 });
 
 //see readme for api info
-app.get("/kanjis", async (request, response) => {
+app.get("/kanjis/", async (request, response) => {
 	const options = {
 		method: "GET",
-		url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/all",
+		// url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/all",
+		url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/親",
+
 		params: {},
 		headers: {
 			"X-RapidAPI-Key": process.env.RAPID_API_KEY,
@@ -32,7 +35,7 @@ app.get("/kanjis", async (request, response) => {
 	}
 	// response.json("Hi. You have reached Kanjis. How can I help?");
 });
-// code from rapidapi to get data from API - not quite working
-async function getAPI() {}
+
+app.get("/kanjis/:grade",APIGetByGrade)
 
 app.listen(PORT, () => console.log("App listening on PAUGHT " + PORT));
