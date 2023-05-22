@@ -1,31 +1,45 @@
-const  axios = require("axios");
+const axios = require("axios");
 
 // takes localhost:8080/kanjis/:grade
 async function APIGetByGrade(request, response) {
-	console.log("APIGetByGrade is working request.params.grade is " + request.params.grade)
-	const options = {
-		method: "GET",
-		// api address plus public/kanji/all
-		url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/all",
-		params: {},
-		headers: {
-			"X-RapidAPI-Key": process.env.RAPID_API_KEY,
-			"X-RapidAPI-Host": "kanjialive-api.p.rapidapi.com",
-		},
-	};
+    console.log("APIGetByGrade is working request.params.grade is " + request.params.grade);
+    const options = {
+        method: "GET",
+        // api address plus public/kanji/all
+        url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/all",
+        params: {},
+        headers: {
+            "X-RapidAPI-Key": process.env.RAPID_API_KEY,
+            "X-RapidAPI-Host": "kanjialive-api.p.rapidapi.com",
+        },
+    };
 
-	try {
-		const res = await axios.request(options);
-		//filter results to only get desired key value pairs
-		// .kanji.character , .kanji.video.mp4
-		// .grade, .meaning, .kunyomi, .onyomi, .mn_hint
-		const results = res.data
-		const gradedKanjis = results.filter((result) => result.grade == request.params.grade).map ((result)=>{return{character: result.kanji.character, video: result.kanji.video.mp4, grade: result.grade, meaning: result.meaning, kunyomi:result.kunyomi, onyomi:result.onyomi, hint:result.mn_hint}})
-		response.json(gradedKanjis);
-	} catch (error) {
-		console.error(error);
-	}
-	// response.json("Hi. You have reached Kanjis. How can I help?");
-};
+    try {
+        const res = await axios.request(options);
+        //filter results to only get desired key value pairs
+        // .kanji.character , .kanji.video.mp4
+        // .grade, .meaning, .kunyomi, .onyomi, .mn_hint
+        const results = res.data;
+        const gradedKanjis = results
+            .filter((result) => result.grade == request.params.grade)
+            .map((result) => {
+                return {
+                    character: result.kanji.character,
+                    video: result.kanji.video.mp4,
+                    grade: result.grade,
+                    meaning: result.meaning,
+                    kunyomi: result.kanji.kunyomi.hiragana,
+                    romaji1: result.kanji.kunyomi.romaji,
+                    onyomi: result.kanji.onyomi.katakana,
+                    romaji2: result.kanji.onyomi.romaji,
+                    hint: result.mn_hint,
+                };
+            });
+        response.json(gradedKanjis);
+    } catch (error) {
+        console.error(error);
+    }
+    // response.json("Hi. You have reached Kanjis. How can I help?");
+}
 
 module.exports = APIGetByGrade;
