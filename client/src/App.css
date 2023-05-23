@@ -57,6 +57,8 @@ nav a:hover {
 /* AllKanji */
 .Dropdown-root {
     margin: 0 0 1rem 1rem;
+    border: 1px solid black;
+    max-width: 150px;
 }
 
 button {
@@ -64,7 +66,11 @@ button {
     padding: 0 0.5rem;
     margin: 0.5rem 1.5rem;
 }
-
+submitButton{
+    min-width: 100px;
+    min-height: 1rem;
+    border-radius: 0.25rem;
+}
 .button-container {
     display: flex;
     flex-direction: row;

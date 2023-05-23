@@ -1,13 +1,16 @@
+"use strict";
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const APIGetByGrade = require("./library/APIGetByGrade");
-require("dotenv").config();
-
-const PORT = process.env.PORT || 8076;
-
 const app = express();
 app.use(cors());
+const APIGetByGrade = require("./library/APIGetByGrade");
+require("dotenv").config();
+const mongoose = require("mongoose");
+const PORT = process.env.PORT || 8077;
+const User = require("./models/usermodel");
+
+mongoose.connect(process.env.DATABASE_URL);
 
 app.get("/", (request, response) => {
     response.json("Welcome to the root!");
@@ -37,5 +40,16 @@ app.get("/kanji", async (request, response) => {
 });
 
 app.get("/kanji/:grade", APIGetByGrade);
+
+app.get("/mykanji", async (request, response) => {
+    console.log("anything");
+    const users = await User.find(request.query);
+    response.json(users[0]);
+});
+
+app.post("/mykanji", async (request, response) => {
+    const newUser = await User.create(request.body);
+    response.json(newUser);
+});
 
 app.listen(PORT, () => console.log("App listening on PAUGHT " + PORT));
