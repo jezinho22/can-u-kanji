@@ -3,8 +3,7 @@ export default function Checkbox2({ isChecked, checkHandler, index, kanji }) {
         <div>
             <input type="checkbox" id={`checkbox-${index}`} checked={isChecked} onChange={checkHandler} />
             <label htmlFor={`checkbox-${index}`}>
-                {kanji.character} : Kunyomi- {kanji.kunyomi} - {kanji.romaji1} ... Onyomi- {kanji.onyomi} -{kanji.romaji2}
-                ... Meaning- {kanji.meaning}
+                {kanji.character} : {kanji.meaning}
             </label>
         </div>
     );
