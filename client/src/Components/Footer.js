@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <div>
+        <div className="footer-container">
             <p>Made by Jezinho & Rachael</p>
         </div>
     );

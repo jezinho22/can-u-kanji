@@ -51,23 +51,26 @@ export default function Allkanji() {
 
     return (
         <div>
-            <h2>All Kanji</h2>
+            <h2 className="sub-heading">All Kanji</h2>
 
             <Dropdown options={options} onChange={handleSelect} placeholder="Select grade" value={defaultOption} />
-            <button onClick={selectAll}>Select All</button>
-            <button onClick={unSelectAll}>Unselect All</button>
-
-            {myKanji &&
-                myKanji.map((kanji, index) => (
-                    <Checkbox2
-                        key={kanji.name}
-                        isChecked={kanji.checked}
-                        checkHandler={() => updateCheckStatus(index)}
-                        label={kanji.name}
-                        index={index}
-                        kanji={kanji}
-                    />
-                ))}
+            <div className="button-container">
+                <button onClick={selectAll}>Select All</button>
+                <button onClick={unSelectAll}>Unselect All</button>
+            </div>
+            <div className="kanji">
+                {myKanji &&
+                    myKanji.map((kanji, index) => (
+                        <Checkbox2
+                            key={kanji.name}
+                            isChecked={kanji.checked}
+                            checkHandler={() => updateCheckStatus(index)}
+                            label={kanji.name}
+                            index={index}
+                            kanji={kanji}
+                        />
+                    ))}
+            </div>
             {/* <p>
                 <pre>{JSON.stringify(myKanji, null, 2)}</pre>
             </p> */}

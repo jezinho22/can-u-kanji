@@ -1,3 +1,3 @@
 export default function Pairgame() {
-    return <div>Pairgame</div>;
+    return <div className="sub-heading">Pairgame</div>;
 }

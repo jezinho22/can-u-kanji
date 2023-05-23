@@ -1,3 +1,3 @@
 export default function Mykanji() {
-    return <div>Mykanji</div>;
+    return <div className="sub-heading">Mykanji</div>;
 }
