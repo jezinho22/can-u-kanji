@@ -2,6 +2,7 @@ import Dropdown from "react-dropdown";
 import Checkbox2 from "../Components/Checkbox2";
 import { useState, useEffect } from "react";
 import axios from "axios";
+require("dotenv").config;
 
 export default function Allkanji({email, handleChangeEmail}) {
     const options = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"];
@@ -22,7 +23,7 @@ export default function Allkanji({email, handleChangeEmail}) {
     }, [grade]);
 
     async function getKanji() {
-        const url = `http://localhost:8076/kanji/${grade}`;
+        const url = `http://localhost:8077/kanji/${grade}`;
         const res = await axios.get(url);
         console.log(res.data.length);
         const results = res.data;
@@ -52,12 +53,14 @@ export default function Allkanji({email, handleChangeEmail}) {
 
     async function handleSubmit(){
         console.log(myKanji.length)
-        const url = `http://localhost:8076/kanji/${email}`
+        const url = `http://localhost:8077/kanji/${email}`
+        console.log(url)
     }
 
     return (
         <div>
             <h2 className="sub-heading">All Kanji</h2>
+            <p>{email}</p>
 
             <Dropdown options={options} onChange={handleSelect} value={defaultOption} />
             {myKanji.length > 0 && <div className="button-container">
