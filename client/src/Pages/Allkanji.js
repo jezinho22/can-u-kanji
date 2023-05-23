@@ -3,15 +3,16 @@ import Checkbox2 from "../Components/Checkbox2";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Allkanji() {
+export default function Allkanji({email, handleChangeEmail}) {
     const options = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"];
-    const defaultOption = options[0];
+    const defaultOption = "Select grade";
     const [myKanji, setMyKanji] = useState([]);
     const [grade, setGrade] = useState("");
 
     function handleSelect(event) {
+        if (event.value !== defaultOption){
         const gradeNumber = event.value.slice(-1);
-        setGrade(gradeNumber);
+        setGrade(gradeNumber);}
     }
 
     useEffect(() => {
@@ -49,15 +50,22 @@ export default function Allkanji() {
         );
     }
 
+    async function handleSubmit(){
+        console.log(myKanji.length)
+        const url = `http://localhost:8076/kanji/${email}`
+    }
+
     return (
         <div>
             <h2 className="sub-heading">All Kanji</h2>
 
-            <Dropdown options={options} onChange={handleSelect} placeholder="Select grade" value={defaultOption} />
-            <div className="button-container">
+            <Dropdown options={options} onChange={handleSelect} value={defaultOption} />
+            {myKanji.length > 0 && <div className="button-container">
+                <input placeholder="email address" onChange={handleChangeEmail}/>
                 <button onClick={selectAll}>Select All</button>
                 <button onClick={unSelectAll}>Unselect All</button>
-            </div>
+                <button className="submitButton" onClick={handleSubmit}>Save choices</button>
+                        </div>}
             <div className="kanji">
                 {myKanji &&
                     myKanji.map((kanji, index) => (
