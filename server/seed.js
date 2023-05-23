@@ -11,7 +11,9 @@ async function seed() {
             email: "someone@somewhere",
             mykanji: [{ character: "x", meaning: "xx" }],
         },
-        { email: "someoneelse@differentplace", mykanji: [{ character: "y", meaning: "yy" }] }
+        { 
+            email: "someoneelse@differentplace", 
+            mykanji: [{ character: "y", meaning: "yy" }] }
     );
     mongoose.disconnect();
 }

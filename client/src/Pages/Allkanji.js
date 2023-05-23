@@ -2,7 +2,6 @@ import Dropdown from "react-dropdown";
 import Checkbox2 from "../Components/Checkbox2";
 import { useState, useEffect } from "react";
 import axios from "axios";
-require("dotenv").config;
 
 export default function Allkanji({email, handleChangeEmail}) {
     const options = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"];
@@ -52,9 +51,13 @@ export default function Allkanji({email, handleChangeEmail}) {
     }
 
     async function handleSubmit(){
-        console.log(myKanji.length)
-        const url = `http://localhost:8077/kanji/${email}`
-        console.log(url)
+        // filter to get checked kanji only
+        const myCheckedKanji = myKanji.filter((kanji)=>kanji.checked === true)
+        const body = {email:email, myKanji: myCheckedKanji}
+        const url = `http://localhost:8077/kanji/`
+        const savedData = await axios.post(url, body)
+
+        console.log(savedData)
     }
 
     return (

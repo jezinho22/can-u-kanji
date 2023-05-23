@@ -47,9 +47,14 @@ app.get("/mykanji", async (request, response) => {
     response.json(users[0]);
 });
 
-app.post("/mykanji", async (request, response) => {
+app.post("/kanji", async (request, response) => {
+    try{
     const newUser = await User.create(request.body);
     response.json(newUser);
+    }catch(error){
+        console.log(error)
+        response.json(error)
+    }
 });
 
 app.listen(PORT, () => console.log("App listening on PAUGHT " + PORT));
