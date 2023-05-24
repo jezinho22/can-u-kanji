@@ -5,6 +5,7 @@ export default function Mykanji({ email }) {
     const [myKanji, setMyKanji] = useState({});
 
     async function getMyKanji() {
+        console.log(myKanji)
         const API = `http://localhost:8077/mykanji/${email}`;
         const res = await axios.get(API);
         setMyKanji(res.data);
@@ -19,6 +20,7 @@ export default function Mykanji({ email }) {
     return (
         <div className="sub-heading">
             <h2>Mykanji</h2>
+            <button onClick={deleteKanji}>This is not really the button</button>
         </div>
     );
 }
