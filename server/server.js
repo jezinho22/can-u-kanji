@@ -9,6 +9,8 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 8077;
 const User = require("./models/usermodel");
+const bp = require("body-parser");
+app.use(bp.json());
 
 mongoose.connect(process.env.DATABASE_URL);
 
@@ -48,12 +50,13 @@ app.get("/mykanji", async (request, response) => {
 });
 
 app.post("/kanji", async (request, response) => {
-    try{
-    const newUser = await User.create(request.body);
-    response.json(newUser);
-    }catch(error){
-        console.log(error)
-        response.json(error)
+    console.log(request.body);
+    try {
+        const newUser = await User.create(request.body);
+        response.json(newUser);
+    } catch (error) {
+        console.log(error);
+        response.json(error);
     }
 });
 
