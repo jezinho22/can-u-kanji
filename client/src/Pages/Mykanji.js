@@ -6,13 +6,13 @@ export default function Mykanji({ email }) {
 
     async function getMyKanji() {
         console.log(myKanji)
-        const API = `http://localhost:8077/mykanji/${email}`;
+        const API = `https://can-u-kanji.onrender.com/mykanji/${email}`;
         const res = await axios.get(API);
         setMyKanji(res.data);
     }
 
     async function deleteKanji(id) {
-        const API = `http://localhost:8077/mykanji/${id}`;
+        const API = `https://can-u-kanji.onrender.com/mykanji/${id}`;
         await axios.delete(API);
         getMyKanji();
     }

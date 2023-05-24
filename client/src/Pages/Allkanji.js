@@ -23,7 +23,7 @@ export default function Allkanji({ email, handleChangeEmail }) {
     }, [grade]);
 
     async function getKanji() {
-        const url = `http://localhost:8077/kanji/${grade}`;
+        const url = `https://can-u-kanji.onrender.com/kanji/${grade}`;
         const res = await axios.get(url);
         console.log(res.data.length);
         const results = res.data;
@@ -57,7 +57,7 @@ export default function Allkanji({ email, handleChangeEmail }) {
         console.log(myCheckedKanji);
         const body = { email: email, mykanji: myCheckedKanji };
         console.log(body);
-        const url = `http://localhost:8077/kanji/`;
+        const url = `https://can-u-kanji.onrender.com/kanji/`;
         const savedData = await axios.post(url, body);
 
         console.log(savedData);
