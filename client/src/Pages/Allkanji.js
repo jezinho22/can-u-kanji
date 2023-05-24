@@ -3,7 +3,7 @@ import Checkbox2 from "../Components/Checkbox2";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Allkanji({ email, handleChangeEmail }) {
+export default function Allkanji({logInEmail }) {
     const options = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"];
     const defaultOption = "Select grade";
     const [myKanji, setMyKanji] = useState([]);
@@ -53,25 +53,27 @@ export default function Allkanji({ email, handleChangeEmail }) {
 
     async function handleSubmit() {
         // filter to get checked kanji only
+        if (logInEmail){
         const myCheckedKanji = myKanji.filter((kanji) => kanji.checked === true);
         console.log(myCheckedKanji);
-        const body = { email: email, mykanji: myCheckedKanji };
+        const body = { email: logInEmail, mykanji: myCheckedKanji };
         console.log(body);
         const url = `http://localhost:8077/kanji/`;
         const savedData = await axios.post(url, body);
-
         console.log(savedData);
+        } else {
+            alert("You need to log in before you can save")
+        }
     }
 
     return (
         <div>
             <h2 className="sub-heading">All Kanji</h2>
-            <p>{email}</p>
 
             <Dropdown options={options} onChange={handleSelect} value={defaultOption} />
+            
             {myKanji.length > 0 && (
                 <div className="button-container">
-                    <input placeholder="email address" onChange={handleChangeEmail} />
                     <button onClick={selectAll}>Select All</button>
                     <button onClick={unSelectAll}>Unselect All</button>
                     <button className="submitButton" onClick={handleSubmit}>
@@ -83,7 +85,7 @@ export default function Allkanji({ email, handleChangeEmail }) {
                 {myKanji &&
                     myKanji.map((kanji, index) => (
                         <Checkbox2
-                            key={kanji.name}
+                            key={index}
                             isChecked={kanji.checked}
                             checkHandler={() => updateCheckStatus(index)}
                             label={kanji.name}
@@ -92,9 +94,7 @@ export default function Allkanji({ email, handleChangeEmail }) {
                         />
                     ))}
             </div>
-            {/* <p>
-                <pre>{JSON.stringify(myKanji, null, 2)}</pre>
-            </p> */}
+
         </div>
     );
 }

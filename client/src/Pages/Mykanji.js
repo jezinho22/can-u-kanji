@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "../Mykanji.css"
 
 const dummyData = {email:"rachael@email", mykanji: [{
     character: "書",
@@ -24,16 +25,21 @@ const dummyData = {email:"rachael@email", mykanji: [{
     hint: "In fall, fire 火 can be made where the crops 禾 grew.",
 },]}
 
-export default function Mykanji({email}) {
+export default function Mykanji({logInEmail}) {
     const [myKanji, setMyKanji] = useState([]);
-    // const [email, setEmail] = useState("jez.johns@email");
+    const [video, setVideo] = useState(false)
+
+    useEffect(() => {
+      getMyKanji()
+    }, [logInEmail])
+    
 
     async function getMyKanji() {
-        console.log(email)
-        const API = `http://localhost:8077/mykanji/?email=${email}`;
+        console.log(logInEmail)
+        const API = `http://localhost:8077/mykanji/?email=${logInEmail}`;
         const res = await axios.get(API);
-        console.log(res.data[0]);
-        setMyKanji(res.data[0].mykanji);
+        console.log(res.data);
+        setMyKanji(res.data.mykanji);
     }
 
     async function deleteKanji(id) {
@@ -42,27 +48,38 @@ export default function Mykanji({email}) {
         getMyKanji();
     }
 
+    function handleStrokeVideo(){
+        setVideo(!video)
+    }
+
     return (
         <div className="sub-heading">
-            <h2>Mykanji</h2>
+            <h2>My Kanji: {logInEmail}</h2>
             <button style={{ marginLeft: "210px", marginTop: "1.5rem" }} onClick={getMyKanji}>
                     Get My Kanji
                 </button>
-            {myKanji && myKanji.map((kanji, idx) => {
-            return ( 
-            <div className="card" key={idx}>
-                <h3 style={{ fontSize: "4rem" }}>{kanji.character}</h3>
-                <button>See Stroke Order</button>
-                <p>Meaning- {kanji.meaning}</p>
-                <p>Kunyomi- {kanji.kunyomi}</p>
-                <p>Romaji- {kanji.romaji1}</p>
-                <p>Onyomi- {kanji.onyomi}</p>
-                <p>Romaji- {kanji.romaji2}</p>
-                <button style={{ marginLeft: "210px", marginTop: "1.5rem" }} onClick={()=>deleteKanji()}>
-                    Remove
-                </button>
+            <div className="card-display-space">
+                {myKanji && myKanji.map((kanji, index) => {
+                return ( 
+                <div className="card" key={index}>
+                    {video ? 
+                    (<video width="250" height="300" autoplay>
+                                    <source src={kanji.video}/>
+                                </video> )
+                    : (<h3 >{kanji.character}</h3>)}
+                    
+                    <button onClick={()=>handleStrokeVideo()}>See Stroke Order</button>
+                    <p>Meaning- {kanji.meaning}</p>
+                    <p>Kunyomi- {kanji.kunyomi}</p>
+                    <p>Romaji- {kanji.romaji1}</p>
+                    <p>Onyomi- {kanji.onyomi}</p>
+                    <p>Romaji- {kanji.romaji2}</p>
+                    <button onClick={()=>deleteKanji()}>
+                        Remove
+                    </button>
 
-            </div>)})}
+                </div>)})}
+            </div>
         </div>
     );
 }
