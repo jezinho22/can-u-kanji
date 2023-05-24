@@ -57,7 +57,7 @@ export default function Allkanji({ email, handleChangeEmail }) {
         console.log(myCheckedKanji);
         const body = { email: email, mykanji: myCheckedKanji };
         console.log(body);
-        const url = `https://can-u-kanji.onrender.com/kanji/`;
+        const url = `http://localhost:8077/kanji/`;
         const savedData = await axios.post(url, body);
 
         console.log(savedData);
