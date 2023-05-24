@@ -5,16 +5,16 @@ export default function Header() {
             <nav>
                 <ul>
                     <li>
-                        <a href="/">Home</a>
+                        <a href="./">Home</a>
                     </li>
                     <li>
-                        <a href="/allkanji">All Kanji</a>
+                        <a href="./allkanji">All Kanji</a>
                     </li>
                     <li>
-                        <a href="/mykanji">My Kanji</a>
+                        <a href="./mykanji">My Kanji</a>
                     </li>
                     <li>
-                        <a href="/pairgame">Pair Game</a>
+                        <a href="./pairgame">Pair Game</a>
                     </li>
                 </ul>
             </nav>
