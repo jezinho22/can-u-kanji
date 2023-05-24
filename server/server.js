@@ -38,7 +38,6 @@ app.get("/kanji", async (request, response) => {
     } catch (error) {
         console.error(error);
     }
-    // response.json("Hi. You have reached Kanjis. How can I help?");
 });
 
 app.get("/kanji/:grade", APIGetByGrade);
