@@ -1,8 +1,22 @@
+
 .card {
-    background-color: "white";
-    border: "solid black 1px";
-    width: "250px";
-    text-align: "center";
-    padding: "0.75rem 0 0 0";
-    box-shadow: "2px 2px grey";
+    background-color: white;
+    border:1px solid black ;
+    width: 250px;
+    text-align: center;
+    padding: 0.75rem 0 0 0;
+    box-shadow: 2px 2px grey;
+    margin: 1rem;
+}
+
+h3 {
+    font-size: 4rem;
+    text-align: center;
+}
+
+.card-display-space{
+display:flex;
+flex-wrap: wrap;
+justify-content: space-between;
+
 }
