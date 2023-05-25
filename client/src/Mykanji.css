@@ -20,3 +20,16 @@ flex-wrap: wrap;
 justify-content: space-between;
 
 }
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .on {
+    color:chartreuse;
+  }
+  .off {
+    color: #ccc;
+  }

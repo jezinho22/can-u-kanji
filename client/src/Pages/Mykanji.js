@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "../Mykanji.css"
+import Rating from "../Components/Rating";
 
 export default function Mykanji({logInEmail}) {
     const [myKanji, setMyKanji] = useState([]);
     const [userId, setUserId] = useState("")
+
 
     // use effect to fetch user's kanji from db at start
     // and whenever logInEmail updates ie new user login
@@ -51,6 +53,23 @@ export default function Mykanji({logInEmail}) {
         })
         setMyKanji(newMyKanji)
     }
+async function updateRating(index, id){
+            // find kanji in myKanji and remove from array
+            const newMyKanji = [...myKanji];
+            // does map return a new array every time?
+            // do we need to use eg filter
+            // need to set rating at kanjicard send to Rating
+            newMyKanji.map((kanji)=> kanji._id === id ? { ...kanji, rating:index} : kanji)
+            // put together new update for db
+            const body = {email:logInEmail, mykanji:newMyKanji}
+            // send update to db
+            const API = `http://localhost:8077/mykanji/${userId}`;
+            const result = await axios.put(API, body);
+            console.log(result)
+            // update myKanji state to reflect change
+            setMyKanji(newMyKanji);
+}
+
 
     return (
         <div className="sub-heading">
@@ -59,6 +78,13 @@ export default function Mykanji({logInEmail}) {
                     Get My Kanji
                 </button>
             <div className="card-display-space">
+                   {/* {myKanji && myKanji.map((kanji, index) => {
+                        return (
+                        <KanjiCard  kanji={kanji} 
+                                    handleStrokeVideo={handleStrokeVideo} 
+                                    deleteKanji={deleteKanji}
+                                    handleRating={handleRating}
+                                    rating={rating}*/}
                 {myKanji && myKanji.map((kanji, index) => {
                 return ( 
                 <div className="card" key={index}>
