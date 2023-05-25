@@ -18,7 +18,7 @@ app.get("/", (request, response) => {
     response.json("Welcome to the root!");
 });
 
-//see readme for api info
+// test endpoint - gets just one kanji - all properties
 app.get("/kanji", async (request, response) => {
     const options = {
         method: "GET",
@@ -40,8 +40,10 @@ app.get("/kanji", async (request, response) => {
     }
 });
 
+// already re-factored to library - responds to user request
 app.get("/kanji/:grade", APIGetByGrade);
 
+// endpoint for getting a user's saved kanji
 app.get("/mykanji", async (request, response) => {
     console.log(request.query);
     const users = await User.find(request.query);

@@ -8,7 +8,9 @@ export default function Allkanji({logInEmail }) {
     const defaultOption = "Select grade";
     const [myKanji, setMyKanji] = useState([]);
     const [grade, setGrade] = useState("");
+    const [savedData, setSavedData] = useState("")
 
+    // take selection from dropdown
     function handleSelect(event) {
         if (event.value !== defaultOption) {
             const gradeNumber = event.value.slice(-1);
@@ -16,17 +18,20 @@ export default function Allkanji({logInEmail }) {
         }
     }
 
+    // when grade changes fetch kanji that match from API
     useEffect(() => {
         if (grade) {
             getKanji();
         }
     }, [grade]);
 
+    // fetch kanji
     async function getKanji() {
         const url = `https://can-u-kanji.onrender.com/kanji/${grade}`;
         const res = await axios.get(url);
         console.log(res.data.length);
         const results = res.data;
+        // add checked : false to all kanji, for checkboxes
         results.map((kanji) => ({ ...kanji, checked: false }));
         setMyKanji(res.data);
     }
@@ -39,6 +44,7 @@ export default function Allkanji({logInEmail }) {
         setMyKanji(myKanji.map((kanji) => ({ ...kanji, checked: false })));
     }
 
+    // deal with clicks on the checkboxes
     function updateCheckStatus(index) {
         setMyKanji(
             myKanji.map((kanji, currentIndex) => {
@@ -55,12 +61,12 @@ export default function Allkanji({logInEmail }) {
         // filter to get checked kanji only
         if (logInEmail){
         const myCheckedKanji = myKanji.filter((kanji) => kanji.checked === true);
-        console.log(myCheckedKanji);
+        // construct data object to send to server
         const body = { email: logInEmail, mykanji: myCheckedKanji };
-        console.log(body);
+        // post
         const url = `http://localhost:8077/kanji/`;
         const savedData = await axios.post(url, body);
-        console.log(savedData);
+        setSavedData(`You have saved ${body.mykanji.length} under the email address: ${logInEmail}`)
         } else {
             alert("You need to log in before you can save")
         }
@@ -79,6 +85,7 @@ export default function Allkanji({logInEmail }) {
                     <button className="submitButton" onClick={handleSubmit}>
                         Save choices
                     </button>
+                    <p>{savedData}</p>
                 </div>
             )}
             <div className="kanji">

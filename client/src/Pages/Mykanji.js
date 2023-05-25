@@ -4,7 +4,6 @@ import "../Mykanji.css"
 
 export default function Mykanji({logInEmail}) {
     const [myKanji, setMyKanji] = useState([]);
-    const [video, setVideo] = useState(false)
     const [userId, setUserId] = useState("")
 
     // use effect to fetch user's kanji from db at start
@@ -35,12 +34,22 @@ export default function Mykanji({logInEmail}) {
         // send update to db
         const API = `http://localhost:8077/mykanji/${userId}`;
         const result = await axios.put(API, body);
+        console.log(result)
         // update myKanji state to reflect change
         setMyKanji(newMyKanji);
 }
 
-    function handleStrokeVideo(){
-        setVideo(!video)
+    function handleStrokeVideo(id){
+        console.log(id)
+        let newMyKanji = [...myKanji]
+        newMyKanji.map((kanji)=> {
+            if (kanji._id === id){
+                return { ...kanji, playVideo: !kanji.playVideo
+            }} else {
+                return kanji
+            }
+        })
+        setMyKanji(newMyKanji)
     }
 
     return (
@@ -53,13 +62,13 @@ export default function Mykanji({logInEmail}) {
                 {myKanji && myKanji.map((kanji, index) => {
                 return ( 
                 <div className="card" key={index}>
-                    {video ? 
+                    {kanji.playVideo ? 
                     (<video width="250" height="300" autoplay>
                                     <source src={kanji.video}/>
                                 </video> )
                     : (<h3 >{kanji.character}</h3>)}
                     
-                    <button onClick={()=>handleStrokeVideo()}>See Stroke Order</button>
+                    <button onClick={()=>handleStrokeVideo(kanji._id)}>See Stroke Order</button>
                     <p>Meaning- {kanji.meaning}</p>
                     <p>Kunyomi- {kanji.kunyomi}</p>
                     <p>Romaji- {kanji.romaji1}</p>
