@@ -2,51 +2,42 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "../Mykanji.css"
 
-const dummyData = {email:"rachael@email", mykanji: [{
-    character: "書",
-    video: "https://media.kanjialive.com/kanji_animations/kanji_mp4/sho-ka(ku)_00.mp4",
-    grade: 2,
-    meaning: "write, book",
-    kunyomi: "か",
-    romaji1: "ka, kaku",
-    onyomi: "ショ",
-    romaji2: "sho",
-    hint: "Using a writing brush 聿 <span class='note'>(holding [38] brush 丨 with fingers 二)</span> in a sunlit 日 place.",
-},
-{
-    character: "秋",
-    video: "https://media.kanjialive.com/kanji_animations/kanji_mp4/aki_00.mp4",
-    grade: 2,
-    meaning: "autumn",
-    kunyomi: "あき",
-    romaji1: "aki",
-    onyomi: "シュウ",
-    romaji2: "shuu",
-    hint: "In fall, fire 火 can be made where the crops 禾 grew.",
-},]}
-
 export default function Mykanji({logInEmail}) {
     const [myKanji, setMyKanji] = useState([]);
     const [video, setVideo] = useState(false)
+    const [userId, setUserId] = useState("")
 
+    // use effect to fetch user's kanji from db at start
+    // and whenever logInEmail updates ie new user login
     useEffect(() => {
       getMyKanji()
-    }, [logInEmail])
+    }, [logInEmail ])
     
 
     async function getMyKanji() {
-        console.log(logInEmail)
+        // create server call for users email
         const API = `http://localhost:8077/mykanji/?email=${logInEmail}`;
         const res = await axios.get(API);
-        console.log(res.data);
+        // set myKanji as user's collection of kanji
         setMyKanji(res.data.mykanji);
+        // set userId for use with delete and update
+        // which is actually always update
+        setUserId(res.data._id)
     }
 
     async function deleteKanji(id) {
-        const API = `http://localhost:8077/mykanji/${id}`;
-        await axios.delete(API);
-        getMyKanji();
-    }
+        // find kanji in myKanji and remove from array
+        const newMyKanji = [...myKanji];
+        const index = newMyKanji.findIndex((kanji)=> kanji._id === id);
+        index >= 0 && newMyKanji.splice(index,1);
+        // put together new update for db
+        const body = {email:logInEmail, mykanji:newMyKanji}
+        // send update to db
+        const API = `http://localhost:8077/mykanji/${userId}`;
+        const result = await axios.put(API, body);
+        // update myKanji state to reflect change
+        setMyKanji(newMyKanji);
+}
 
     function handleStrokeVideo(){
         setVideo(!video)
@@ -74,7 +65,7 @@ export default function Mykanji({logInEmail}) {
                     <p>Romaji- {kanji.romaji1}</p>
                     <p>Onyomi- {kanji.onyomi}</p>
                     <p>Romaji- {kanji.romaji2}</p>
-                    <button onClick={()=>deleteKanji()}>
+                    <button onClick={()=>deleteKanji(kanji._id)}>
                         Remove
                     </button>
 

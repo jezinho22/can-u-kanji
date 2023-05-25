@@ -60,4 +60,15 @@ app.post("/kanji", async (request, response) => {
     }
 });
 
+// handles "delete" from front end
+app.put("/mykanji/:id", async (request, response) => {
+    try{
+    const updated = await User.findByIdAndUpdate(request.params.id, request.body)
+    response.json(updated)
+    }catch(error){
+        console.log(error)
+        response.json(error)
+    }
+})
+
 app.listen(PORT, () => console.log("App listening on PAUGHT " + PORT));
