@@ -1,3 +1,6 @@
+html {
+    background-image: url(./sources/Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project-1920x1200.jpg);
+}
 body {
     border: solid black 1px;
     margin: 0 5%;
@@ -5,8 +8,24 @@ body {
     letter-spacing: 0.5px;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+
+    height: 20px;
+}
+
 .header-container {
     background-color: pink;
+}
+
+.header-container input {
+    justify-items: center;
+    align-items: center;
+    margin-left: 1rem;
+}
+.header-container p {
+    margin-left: 0.5rem;
 }
 
 h1 {
@@ -66,7 +85,7 @@ button {
     padding: 0 0.5rem;
     margin: 0.5rem 1.5rem;
 }
-submitButton{
+submitButton {
     min-width: 100px;
     min-height: 1rem;
     border-radius: 0.25rem;
