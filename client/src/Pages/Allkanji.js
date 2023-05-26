@@ -64,7 +64,7 @@ export default function Allkanji({logInEmail }) {
         // construct data object to send to server
         const body = { email: logInEmail, mykanji: myCheckedKanji };
         // post
-        const url = `http://localhost:8077/kanji/`;
+        const url = `https://can-u-kanji.onrender.com/kanji/`;
         await axios.post(url, body);
         setSavedData(`You have saved ${body.mykanji.length} under the email address: ${logInEmail}`)
         } else {
