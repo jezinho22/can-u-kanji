@@ -1,4 +1,4 @@
-KanjiCard {
+.KanjiCard {
     background-color: white;
     border: 1px solid black;
     width: 250px;
@@ -36,9 +36,9 @@ h3 {
 h2 button {
     margin-right: 1rem;
 }
-APP CSS
+
 html {
-    background-image: url(./sources/Vincent_vanGogh-_Almondblossom-_Google_Art_Project-1920x1200.jpg);
+    background-image: url("./sources/Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project-1920x1200.jpg")
 }
 
 body {
