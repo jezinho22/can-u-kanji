@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+Problem domain
+English is hard to spell, and it only uses 26 letters. Japanese uses not just sound representation in a different script entirely from English, but also uses kanji. 
+Kanji are the logographic Chinese characters taken from the Chinese script, and used in the writing of Japanese. They were made a major part of the Japanese writing system during the time of Old Japanese and are still used, along with the subsequently-derived syllabic scripts of hiragana and katakana.
+We want to provide a platform for selecting kanji to learn.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+User stories
+We want to provide features for people who:
+want to track the kanji they have practised
+want to select kanji appropriate to their level of learning
+want to learn how to draw kanji
+want to relate kanji to English meanings
+to Japanese usage
 
-## Available Scripts
+Planning
+We started from a wireframe and a dicussion of possible user needs
 
-In the project directory, you can run:
+Communication
+We used a trello board and discord and github to keep up to date with progress and next tasks. We used branches and pull requests to allow each other to review changes before merging them with the main project. This meant that we could resolve any differences of opinion. We did a lot of paired programming, taking turns driving and navigating, so that we could learn from each other. Later in the week we worked separately but used the above means to communicate.
 
-### `npm start`
+MVP
+Our project is slightly beyond the MVP we set out to achieve. We aimed for 4 database functions and interrogating an API; pages for selecting and reviewing kanji and finding out about the site. We were able to add
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The name of the project  
+# Can U Kanji  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Names of the team members  
+Rachael and Jezinho
 
-### `npm test`
+## A description of the project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## The overall problem domain and how the project solves those problems
 
-### `npm run build`
+## Semantic versioning, beginning with version 1.0.0 and incremented as changes are made  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## A list of any libraries, frameworks, or packages that your application requires in order to properly function  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropdown": "^1.11.0",
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "5.0.1"
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Instructions that the user may need to follow in order to get your application up and running on their own computer  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Clearly defined API endpoints with sample responses
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Clearly defined database schemas

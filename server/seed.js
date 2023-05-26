@@ -12,8 +12,10 @@ async function seed() {
             mykanji: [
                 {
                     character: "話",
-                    video: "https://media.kanjialive.com/kanji_animations/kanji_mp4/wa-hana(su)_00.mp4",
-                    grade: 2,
+                    videoMp4: "https://media.kanjialive.com/kanji_animations/kanji_mp4/sho-ka(ku)_00.mp4",
+                    videoWebm: "not much",
+                    playVideo:false,
+                                        grade: 2,
                     meaning: "speak",
                     kunyomi: "はな",
                     romaji1: "hana, hanasu, hanashi",
@@ -23,8 +25,10 @@ async function seed() {
                 },
                 {
                     character: "秋",
-                    video: "https://media.kanjialive.com/kanji_animations/kanji_mp4/aki_00.mp4",
-                    grade: 2,
+                    videoMp4: "https://media.kanjialive.com/kanji_animations/kanji_mp4/sho-ka(ku)_00.mp4",
+                    videoWebm: "not much",
+                    playVideo:false,
+                                        grade: 2,
                     meaning: "autumn",
                     kunyomi: "あき",
                     romaji1: "aki",
@@ -39,7 +43,9 @@ async function seed() {
             mykanji: [
                 {
                     character: "書",
-                    video: "https://media.kanjialive.com/kanji_animations/kanji_mp4/sho-ka(ku)_00.mp4",
+                    videoMp4: "https://media.kanjialive.com/kanji_animations/kanji_mp4/sho-ka(ku)_00.mp4",
+                    videoWebm: "not much",
+                    playVideo:false,
                     grade: 2,
                     meaning: "write, book",
                     kunyomi: "か",
@@ -50,7 +56,9 @@ async function seed() {
                 },
                 {
                     character: "秋",
-                    video: "https://media.kanjialive.com/kanji_animations/kanji_mp4/aki_00.mp4",
+                    videoMp4: "https://media.kanjialive.com/kanji_animations/kanji_mp4/sho-ka(ku)_00.mp4",
+                    videoWebm: "not much",
+                    playVideo:false,
                     grade: 2,
                     meaning: "autumn",
                     kunyomi: "あき",

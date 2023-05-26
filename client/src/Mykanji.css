@@ -13,8 +13,30 @@ h3 {
     text-align: center;
 }
 
+<<<<<<< HEAD
 .card-display-space {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
+=======
+.card-display-space{
+display:flex;
+flex-wrap: wrap;
+justify-content: space-between;
+
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .on {
+    color:chartreuse;
+  }
+  .off {
+    color: #ccc;
+  }
+>>>>>>> add-video

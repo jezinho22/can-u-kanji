@@ -25,7 +25,9 @@ async function APIGetByGrade(request, response) {
             .map((result) => {
                 return {
                     character: result.kanji.character,
-                    video: result.kanji.video.mp4,
+                    videomp4: result.kanji.video.mp4,
+                    videomp4: result.kanji.video.webm,
+                    playVideo: false,
                     grade: result.grade,
                     meaning: result.meaning,
                     kunyomi: result.kanji.kunyomi.hiragana,

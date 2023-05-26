@@ -3,7 +3,7 @@ export default function Home() {
         <div className="sub-heading">
             <h2 style={{ fontWeight: "bold" }}>Home</h2>
             <p>About Us...</p>
-            <p> What is Kanji?...</p>
+            <p>What is Kanji?...</p>
         </div>
     );
 }
