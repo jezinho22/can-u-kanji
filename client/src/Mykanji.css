@@ -1,4 +1,4 @@
-.card {
+.KanjiCard {
     background-color: white;
     border: 1px solid black;
     width: 250px;
@@ -20,11 +20,12 @@ justify-content: space-between;
 
 }
 
-button {
+.star-rating button {
     background-color: transparent;
     border: none;
     outline: none;
     cursor: pointer;
+    margin: 0;
   }
   .on {
     color:chartreuse;

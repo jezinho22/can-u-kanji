@@ -2,7 +2,7 @@ html {
     background-image: url(./sources/Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project-1920x1200.jpg);
 }
 body {
-    border: solid black 1px;
+    /* border: solid black 1px; */
     margin: 0 5%;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     letter-spacing: 0.5px;

@@ -11,11 +11,11 @@ export default function Rating({rating, handleRating, kanji}) {
             return (                       
                 <button type="button" 
                         key={index} 
-                        className={index <= kanji.rating ? "on" : "off"} 
+                        className={index <= (hover || kanji.rating) ? "on" : "off"} 
                         onClick={()=> handleRating(index, kanji._id)}
                         onMouseEnter={()=>setHover(index)}
                         onMouseLeave={()=>setHover(kanji.rating)}>
-                <span className="star">&#128077;</span>
+                <span className="star">&#9733;</span>
                 </button>        
             );
           })}

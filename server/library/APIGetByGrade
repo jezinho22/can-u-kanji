@@ -35,8 +35,11 @@ async function APIGetByGrade(request, response) {
                     onyomi: result.kanji.onyomi.katakana,
                     romaji2: result.kanji.onyomi.romaji,
                     hint: result.mn_hint,
+                    rating: 0,
                 };
             });
+            console.log("gradedkanjis is working")
+            console.log(gradedKanjis[0])
         response.json(gradedKanjis);
     } catch (error) {
         console.error(error);

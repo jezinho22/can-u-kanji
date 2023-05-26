@@ -17,6 +17,7 @@ const userSchema = new Schema({
             onyomi: { type: String, required: false },
             romaji2: { type: String, required: false },
             hint: { type: String, required: false },
+            rating: { type: String, required: false },
         },
     ],
 });

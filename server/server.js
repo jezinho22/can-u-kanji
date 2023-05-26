@@ -47,7 +47,7 @@ app.get("/kanji/:grade", APIGetByGrade);
 app.get("/mykanji", async (request, response) => {
     console.log(request.query);
     const users = await User.find(request.query);
-    console.log(users);
+    console.log(users[0]);
     response.json(users[0]);
 });
 

@@ -1,11 +1,10 @@
 import Rating from "./Rating";
 
-export default function KanjiCard({kanji, handleStrokeVideo, deleteKanji, updateRating }) {
+export default function KanjiCard({kanji, handleStrokeVideo, deleteKanji, updateRating, index }) {
 
   return (
-    <div className="KanjiCard">
+    <div className="KanjiCard" key={index}>
  
-        <div className="card" key={index}>
             <Rating handleRating={updateRating} rating={kanji.rating} kanji={kanji}/>
             {kanji.playVideo ? 
             (<video width="250" height="300" autoplay>
@@ -23,6 +22,5 @@ export default function KanjiCard({kanji, handleStrokeVideo, deleteKanji, update
                 Remove
             </button>
         </div>
-    </div>
   )
 }

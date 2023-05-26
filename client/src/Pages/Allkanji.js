@@ -65,7 +65,7 @@ export default function Allkanji({logInEmail }) {
         const body = { email: logInEmail, mykanji: myCheckedKanji };
         // post
         const url = `http://localhost:8077/kanji/`;
-        const savedData = await axios.post(url, body);
+        await axios.post(url, body);
         setSavedData(`You have saved ${body.mykanji.length} under the email address: ${logInEmail}`)
         } else {
             alert("You need to log in before you can save")

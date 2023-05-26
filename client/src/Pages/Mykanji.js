@@ -1,21 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-<<<<<<< HEAD
-import "../Mykanji.css";
-=======
+import KanjiCard from "../Components/KanjiCard";
 import "../Mykanji.css"
-import Rating from "../Components/Rating";
->>>>>>> add-video
+
 
 export default function Mykanji({ logInEmail }) {
     const [myKanji, setMyKanji] = useState([]);
-<<<<<<< HEAD
-    const [video, setVideo] = useState(false);
-    const [userId, setUserId] = useState("");
-=======
     const [userId, setUserId] = useState("")
->>>>>>> add-video
-
 
     // use effect to fetch user's kanji from db at start
     // and whenever logInEmail updates ie new user login
@@ -43,34 +34,28 @@ export default function Mykanji({ logInEmail }) {
         const body = { email: logInEmail, mykanji: newMyKanji };
         // send update to db
         const API = `http://localhost:8077/mykanji/${userId}`;
-<<<<<<< HEAD
-        await axios.put(API, body);
-=======
         const result = await axios.put(API, body);
         console.log(result)
->>>>>>> add-video
         // update myKanji state to reflect change
         setMyKanji(newMyKanji);
     }
 
-<<<<<<< HEAD
-    function handleStrokeVideo() {
-        setVideo(!video);
-=======
+
     function handleStrokeVideo(id){
         console.log(id)
         let newMyKanji = [...myKanji]
         newMyKanji.map((kanji)=> {
             if (kanji._id === id){
+                console.log(!kanji.playVideo)
                 return { ...kanji, playVideo: !kanji.playVideo
             }} else {
                 return kanji
             }
         })
         setMyKanji(newMyKanji)
->>>>>>> add-video
     }
 async function updateRating(index, id){
+    console.log(index, id)
             // find kanji in myKanji and remove from array
             const newMyKanji = [...myKanji];
             // does map return a new array every time?
@@ -79,6 +64,7 @@ async function updateRating(index, id){
             newMyKanji.map((kanji)=> kanji._id === id ? { ...kanji, rating:index} : kanji)
             // put together new update for db
             const body = {email:logInEmail, mykanji:newMyKanji}
+            console.log(body)
             // send update to db
             const API = `http://localhost:8077/mykanji/${userId}`;
             const result = await axios.put(API, body);
@@ -95,56 +81,16 @@ async function updateRating(index, id){
                 Get My Kanji
             </button>
             <div className="card-display-space">
-<<<<<<< HEAD
-                {myKanji &&
-                    myKanji.map((kanji, index) => {
+
+                   {myKanji && myKanji.map((kanji, index) => {
                         return (
-                            <div className="card" key={index}>
-                                {video ? (
-                                    <video width="250" height="300" autoplay>
-                                        <source src={kanji.video} />
-                                    </video>
-                                ) : (
-                                    <h3>{kanji.character}</h3>
-                                )}
-=======
-                   {/* {myKanji && myKanji.map((kanji, index) => {
-                        return (
-                        <KanjiCard  kanji={kanji} 
+                        <KanjiCard  index={index}
+                                    kanji={kanji} 
                                     handleStrokeVideo={handleStrokeVideo} 
                                     deleteKanji={deleteKanji}
-                                    handleRating={handleRating}
-                                    rating={rating}*/}
-                {myKanji && myKanji.map((kanji, index) => {
-                return ( 
-                <div className="card" key={index}>
-                    {kanji.playVideo ? 
-                    (<video width="250" height="300" autoplay>
-                                    <source src={kanji.video}/>
-                                </video> )
-                    : (<h3 >{kanji.character}</h3>)}
-                    
-                    <button onClick={()=>handleStrokeVideo(kanji._id)}>See Stroke Order</button>
-                    <p>Meaning- {kanji.meaning}</p>
-                    <p>Kunyomi- {kanji.kunyomi}</p>
-                    <p>Romaji- {kanji.romaji1}</p>
-                    <p>Onyomi- {kanji.onyomi}</p>
-                    <p>Romaji- {kanji.romaji2}</p>
-                    <button onClick={()=>deleteKanji(kanji._id)}>
-                        Remove
-                    </button>
->>>>>>> add-video
+                                    updateRating={updateRating}/>
+                        )})}
 
-                                <button onClick={() => handleStrokeVideo()}>See Stroke Order</button>
-                                <p>Meaning- {kanji.meaning}</p>
-                                <p>Kunyomi- {kanji.kunyomi}</p>
-                                <p>Romaji- {kanji.romaji1}</p>
-                                <p>Onyomi- {kanji.onyomi}</p>
-                                <p>Romaji- {kanji.romaji2}</p>
-                                <button onClick={() => deleteKanji(kanji._id)}>Remove</button>
-                            </div>
-                        );
-                    })}
             </div>
         </div>
     );

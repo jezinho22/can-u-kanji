@@ -66,6 +66,7 @@ async function seed() {
                     onyomi: "シュウ",
                     romaji2: "shuu",
                     hint: "In fall, fire 火 can be made where the crops 禾 grew.",
+                    rating: 0
                 },
             ],
         }
