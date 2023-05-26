@@ -16,7 +16,7 @@ export default function Mykanji({ logInEmail }) {
 
     async function getMyKanji() {
         // create server call for users email
-        const API = `http://localhost:8077/mykanji/?email=${logInEmail}`;
+        const API = `https://can-u-kanji.netlify.app/mykanji/?email=${logInEmail}`;
         const res = await axios.get(API);
         // set myKanji as user's collection of kanji
         setMyKanji(res.data.mykanji);
@@ -33,7 +33,7 @@ export default function Mykanji({ logInEmail }) {
         // put together new update for db
         const body = { email: logInEmail, mykanji: newMyKanji };
         // send update to db
-        const API = `http://localhost:8077/mykanji/${userId}`;
+        const API = `https://can-u-kanji.netlify.app/mykanji/${userId}`;
         const result = await axios.put(API, body);
         console.log(result)
         // update myKanji state to reflect change
@@ -66,7 +66,7 @@ async function updateRating(index, id){
             const body = {email:logInEmail, mykanji:newMyKanji}
             console.log(body)
             // send update to db
-            const API = `http://localhost:8077/mykanji/${userId}`;
+            const API = `https://can-u-kanji.netlify.appmykanji/${userId}`;
             const result = await axios.put(API, body);
             console.log(result)
             // update myKanji state to reflect change
