@@ -21,13 +21,29 @@ MVP
 Our project is slightly beyond the MVP we set out to achieve. We aimed for 4 database functions and interrogating an API; pages for selecting and reviewing kanji and finding out about the site. We were able to add
 
 The name of the project  
-Can U Kanji
+# Can U Kanji  
 
-Names of the team members
-A description of the project
-The overall problem domain and how the project solves those problems
-Semantic versioning, beginning with version 1.0.0 and incremented as changes are made
-A list of any libraries, frameworks, or packages that your application requires in order to properly function
-Instructions that the user may need to follow in order to get your application up and running on their own computer
-Clearly defined API endpoints with sample responses
-Clearly defined database schemas
+## Names of the team members  
+Rachael and Jezinho
+
+## A description of the project
+
+## The overall problem domain and how the project solves those problems
+
+## Semantic versioning, beginning with version 1.0.0 and incremented as changes are made  
+
+## A list of any libraries, frameworks, or packages that your application requires in order to properly function  
+
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropdown": "^1.11.0",
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "5.0.1"
+
+
+## Instructions that the user may need to follow in order to get your application up and running on their own computer  
+
+## Clearly defined API endpoints with sample responses
+
+## Clearly defined database schemas
