@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import KanjiCard from "../Components/KanjiCard";
-import "../Mykanji.css"
+import "../css/Mykanji.css"
 
 
 export default function Mykanji({ logInEmail }) {
@@ -84,7 +84,7 @@ async function updateRating(index, id){
 
                    {myKanji && myKanji.map((kanji, index) => {
                         return (
-                        <KanjiCard  index={index}
+                        <KanjiCard  key={index}
                                     kanji={kanji} 
                                     handleStrokeVideo={handleStrokeVideo} 
                                     deleteKanji={deleteKanji}

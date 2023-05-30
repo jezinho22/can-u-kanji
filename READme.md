@@ -1,16 +1,92 @@
-kanji alive API  
-returns:  
-for advanced search with params: { grade: "2" },  
- array of kanji objects: "kanji": { "character": "書", "stroke": 10 }, "radical":
-{ "character": "⽇", "stroke": 4, "order": 92 }
+# Can U Kanji  
 
-for details of kanji
-use: url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/all",  
-or 	url: "https://kanjialive-api.p.rapidapi.com/api/public/kanji/" + specific kanj,
+### Names of the team members  
+Rachael and Jezinho  
 
-so a search for some grade 2 kanji with details would involve either query for grade 2, and then call back for each one's details
-or search for all kanji, store in state or local storage, and query the whole lot
+## A description of the project
 
-From Reddit: https://www.reddit.com/r/LearnJapanese/comments/56mjhs/jlpt_levels_for_kanji_learners_course/?onetap_auto=true
-*Another thing to note is the N5 kanji. N5 kanji vaguely resembles Grade 1 kanji, but with about 30 extra ones from Grades 2 and 3. Yet there was a certain class of grade 1 kanji that were not on the old test specs: 糸、草、石、王・玉、貝. Do you see the pattern here? Those are all common bushu that MEXT decided that elementary school students need to learn early on so they can learn how to build kanji. JEES evidently decided that they know better than MEXT does on how to test foreigners, so they left those kanji out of the old test specs. I think you'll find that if you look at the current published test specs (公式問題集), that those kanji are still missing from N5, so JEES evidently has not budged much on what kanji they consider to be important for N5. (Note: JEES's methodology for choosing which kanji for which test generally relies upon what JSL textbooks teach. And by "JSL textbooks" we don't mean "genki/minna/tobira", but whatever the todai JSL department head whose friends with the JEES bucho uses for his courses, as well as other JSL departments at top-tier universities. So this trickles down from the authors of those textbooks as deciding teaching those kanji to not be good at that stage for foreigners.)*
+### Problem domain  
+English is hard to spell, and it only uses 26 letters. Japanese uses not just sound representation in a different script entirely from English, but also uses kanji. 
+Kanji are the logographic Chinese characters taken from the Chinese script, and used in the writing of Japanese. They were made a major part of the Japanese writing system during the time of Old Japanese and are still used, along with the subsequently-derived syllabic scripts of hiragana and katakana.  
+We want to provide a platform for selecting kanji to learn.  
 
+### User stories  
+We want to provide features for people who:
+- want to track the kanji they have practised
+- want to select kanji appropriate to their level of learning
+- want to learn how to draw kanji
+- want to relate kanji to English meanings
+- want to relate kanji to Japanese usage
+
+### Planning  
+We started from Rachael's passion for Japanese, and the problem domain that we had identified. We developed this using a discussion of possible user needs and a wireframe.   
+
+### Communication  
+We used a trello board and discord and github to keep up to date with progress and next tasks. We used branches and pull requests to allow each other to review changes before merging them with the main project. This meant that we could resolve any differences of opinion. We did a lot of paired programming, taking turns driving and navigating, so that we could learn from each other. Later in the week we worked separately but used the above means to communicate.  
+
+### MVP  
+Our project is slightly beyond the MVP we set out to achieve. We aimed for 4 database functions and interrogating an API; pages for selecting and reviewing kanji and finding out about the site.  
+
+### Semantic versioning, beginning with version 1.0.0 and incremented as changes are made  
+We are close to version 1.0.0, but there are some essential features which are needed - video play, ratings and one game
+
+### A list of any libraries, frameworks, or packages that your application requires in order to properly function  
+
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropdown": "^1.11.0",
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "5.0.1"
+
+
+### Instructions that the user may need to follow in order to get your application up and running on their own computer  
+Visit Home for instructions. Select kanji on the All Kanji page. Save. View selected kanji in more detail on My Kanji page. Use your kanji for games on Pairs Game page.
+
+### Clearly defined API endpoints with sample responses  
+
+https://can-u-kanji.onrender.com/ which gives a root message: Welcome to the root!git add   
+
+https://can-u-kanji.onrender.com/kanji/${grade} takes a grade as a number and returns all kanji matching that grade, but with a reduced number of properties:  
+{
+                    character:   
+                    videomp4:  
+                    videowebm:  
+                    playVideo:   
+                    grade:   
+                    meaning:  
+                    kunyomi:   
+                    romaji1:   
+                    onyomi:   
+                    romaji2:   
+                    hint:   
+                    rating: 0  
+                }
+
+https://can-u-kanji.onrender.com/mykanji/?email=${logInEmail} A query using a saved email address will return an object with properties of email and mykanji. mykanji is the collection of selected kanji for that user.
+
+put/update: `https://can-u-kanji.onrender.com/mykanji/${userId}` with body. This is used for adding a rating and also for removing kanji from the user's collection. 
+
+https://kanjialive-api.p.rapidapi.com/api/public/kanji/all calls 3rd party API and returns all kanji, with some 40 properties  
+https://can-u-kanji.netlify.app/kanji will return an example kanji with all those properties  
+
+### Database schema
+{  
+    email: String,  
+    mykanji: [  
+        {  
+            character: { type: String, required: false },  
+            videoMp4: { type: String, required: false },  
+            videoWebm: { type: String, required: false },  
+            playVideo:{type: Boolean},  
+            grade: { type: Number, required: false },  
+            meaning: { type: String, required: false },  
+            kunyomi: { type: String, required: false },  
+            romaji1: { type: String, required: false },  
+            onyomi: { type: String, required: false },  
+            romaji2: { type: String, required: false },  
+            hint: { type: String, required: false },  
+            rating: { type: String, required: false },  
+        },   
+    ],  
+}  

@@ -3,7 +3,7 @@ import Rating from "./Rating";
 export default function KanjiCard({kanji, handleStrokeVideo, deleteKanji, updateRating, index }) {
 
   return (
-    <div className="KanjiCard" key={index}>
+    <div className="KanjiCard">
  
             <Rating handleRating={updateRating} rating={kanji.rating} kanji={kanji}/>
             {kanji.playVideo ? 
