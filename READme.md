@@ -31,24 +31,23 @@ Our project is slightly beyond the MVP we set out to achieve. We aimed for 4 dat
 We are close to version 1.0.0, but there are some essential features which are needed - video play, ratings and one game
 
 ### A list of any libraries, frameworks, or packages that your application requires in order to properly function  
-
+```
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1"
-
+```
 
 ### Instructions that the user may need to follow in order to get your application up and running on their own computer  
 Visit Home for instructions. Select kanji on the All Kanji page. Save. View selected kanji in more detail on My Kanji page. Use your kanji for games on Pairs Game page.
 
 ### Clearly defined API endpoints with sample responses  
-
-https://can-u-kanji.onrender.com/ which gives a root message: Welcome to the root!git add   
-
-https://can-u-kanji.onrender.com/kanji/${grade} takes a grade as a number and returns all kanji matching that grade, but with a reduced number of properties:  
-{
+`https://can-u-kanji.onrender.com/` which gives a root message: *Welcome to the root!*   
+`https://can-u-kanji.onrender.com/kanji/${grade}` takes a grade as a number and returns all kanji matching that grade, but with a reduced number of properties: 
+```
+                 {
                     character:   
                     videomp4:  
                     videowebm:  
@@ -62,15 +61,17 @@ https://can-u-kanji.onrender.com/kanji/${grade} takes a grade as a number and re
                     hint:   
                     rating: 0  
                 }
+```
 
-https://can-u-kanji.onrender.com/mykanji/?email=${logInEmail} A query using a saved email address will return an object with properties of email and mykanji. mykanji is the collection of selected kanji for that user.
+`https://can-u-kanji.onrender.com/mykanji/?email=${logInEmail}` A query using a saved email address will return an object with properties of `email` and `mykanji`. `mykanji` is the collection of selected kanji for that user.
 
 put/update: `https://can-u-kanji.onrender.com/mykanji/${userId}` with body. This is used for adding a rating and also for removing kanji from the user's collection. 
 
-https://kanjialive-api.p.rapidapi.com/api/public/kanji/all calls 3rd party API and returns all kanji, with some 40 properties  
-https://can-u-kanji.netlify.app/kanji will return an example kanji with all those properties  
+`https://kanjialive-api.p.rapidapi.com/api/public/kanji/all` calls 3rd party API and returns all kanji, with some 40 properties.    
+`https://can-u-kanji.netlify.app/kanji` will return an example kanji with all those properties.  
 
 ### Database schema
+```
 {  
     email: String,  
     mykanji: [  
@@ -89,4 +90,5 @@ https://can-u-kanji.netlify.app/kanji will return an example kanji with all thos
             rating: { type: String, required: false },  
         },   
     ],  
-}  
+}
+```  
